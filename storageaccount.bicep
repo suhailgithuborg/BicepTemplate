@@ -1,7 +1,7 @@
 // This will create a simple storage account
 
 resource storageaccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
-  name: 'suhailstorage2edhjmfbvjkertgfbv34jkegv'
+  name: 'seeratkaursuhail321'
   location: 'australiaeast'
   kind: 'StorageV2'
   properties: {
