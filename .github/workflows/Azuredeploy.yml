@@ -6,15 +6,22 @@ jobs:
       runs-on: ubuntu-latest
       steps:
 
-      - name: Login to Azure
-        uses: azure/login@v1
+
+      # - name: Login to Azure
+      #   uses: azure/CliLogin@v1
+      #   with:
+      #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Login to Azure using device code (CLI)
+        uses: azure/ClI@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          inlineScript: |
+            az login --use-device-code
 
       - name: Checkout source code
         uses: actions/checkout@v2
 
-      - name: Deploy ARM Template
+      - name: Deploy Bicep Template
         uses: azure/CLI@v1
         with:
           inlineScript: |
@@ -22,3 +29,4 @@ jobs:
             --name StorageAccountDeployment \
             --resource-group rg-suhail \
             --template-file storageaccount.bicep
+
